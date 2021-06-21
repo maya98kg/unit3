@@ -1,0 +1,69 @@
+<html>
+
+<head>
+    <style>
+        body {
+            background-color: #8b0b0b;
+            color: white;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+
+        h1 {
+            font-size: 48px;
+        }
+
+        p, a {
+            font-size: 24px;
+        }
+
+        a {
+            color: rgb(20, 17, 17);
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 100px auto;
+        }
+               
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>{{ title }}</h1>
+
+        <audio src="{{ url_for('static', filename='music.mp3') }}" controls autoplay>
+            <p>If you are reading this, it is because your browser does not support the audio element.</p>
+            </audio>
+
+        <img src="{{url_for('static',filename=picture_url)}}" width=600px height=400px >
+
+        <p>{{ text }}</p>
+
+
+        {% if choices %}
+
+            <p>What do you do?</p>
+
+            <ul>
+                {% for (page_name, choice) in choices %}
+                <li>
+                    <a href="{{url_for(page_name)}}">{{choice}}</a>
+                </li>
+                {% endfor %}
+            </ul>
+
+        {% else %}
+            
+            <p>THE END.</p>
+
+
+            <p><a href="{{url_for('start')}}">Play again.</a></p>
+        {% endif %}
+
+
+    </div>
+</body>
+
+</html>
